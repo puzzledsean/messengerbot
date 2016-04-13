@@ -8,6 +8,7 @@
 
 var bodyParser = require('body-parser');
 var express = require('express');
+var request = require('request');
 var app = express();
 
 var token = "CAAOxeW56ROcBAHaBNCdIINKS0uxGJsd3Oh5p3F5ORcbByOg5o3EdDZBwRCshyvdhVy9eBBTXZB4i9Et70mtZAUZALJaFv9QBCdlCEZA72WBO18XUbp1CROvZCGcXXfcgy0IFR3YCYjx9MRibD5jgs2NZCE5wiZBDgVCcl1sPAef0rBbvsWkHNXnI2xRuVUXWuUhDlmbLGHWvEAZDZD";
@@ -58,7 +59,8 @@ function sendTextMessage(sender, text) {
   messageData = {
     text:text
   }
-  request = ({
+
+  request({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
     method: 'POST',
@@ -83,6 +85,8 @@ app.post('/webhook/', function (req, res) {
     sender = event.sender.id;
     if (event.message && event.message.text) {
       text = event.message.text;
+      res.send(text);
+      console.log('user typed' + text);
       sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
     }
   }

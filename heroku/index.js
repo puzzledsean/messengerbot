@@ -12,27 +12,6 @@ var app = express();
 
 var token = "CAAOxeW56ROcBAHaBNCdIINKS0uxGJsd3Oh5p3F5ORcbByOg5o3EdDZBwRCshyvdhVy9eBBTXZB4i9Et70mtZAUZALJaFv9QBCdlCEZA72WBO18XUbp1CROvZCGcXXfcgy0IFR3YCYjx9MRibD5jgs2NZCE5wiZBDgVCcl1sPAef0rBbvsWkHNXnI2xRuVUXWuUhDlmbLGHWvEAZDZD";
 
-function sendTextMessage(sender, text) {
-  messageData = {
-    text:text
-  }
-  request({
-    url: 'https://graph.facebook.com/v2.6/me/messages',
-    qs: {access_token:token},
-    method: 'POST',
-    json: {
-      recipient: {id:sender},
-      message: messageData,
-    }
-  }, function(error, response, body) {
-    if (error) {
-      console.log('Error sending message: ', error);
-    } else if (response.body.error) {
-      console.log('Error: ', response.body.error);
-    }
-  });
-}
-
 app.set('port', (process.env.PORT || 5000));
 app.listen(app.get('port'));
 
@@ -75,6 +54,26 @@ app.post('/instagram', function(req, res) {
   res.sendStatus(200);
 });
 
+function sendTextMessage(sender, text) {
+  messageData = {
+    text:text
+  },
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+      recipient: {id:sender},
+      message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}
 
 app.post('/webhook/', function (req, res) {
 	console.log('LISTENED TO POST REQUESTION HELLOOOOOOOOOO')

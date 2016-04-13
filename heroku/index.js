@@ -39,7 +39,7 @@ app.listen(app.get('port'));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  console.log(req);
+  //console.log(req);
   res.send('It works!');
 });
 
@@ -52,6 +52,10 @@ app.get(['/facebook', '/instagram'], function(req, res) {
   } else {
     res.sendStatus(400);
   }
+});
+
+app.get('/webhook', function(req, res){
+	res.send('hello');
 });
 
 app.post('/facebook', function(req, res) {
@@ -68,7 +72,9 @@ app.post('/instagram', function(req, res) {
   res.sendStatus(200);
 });
 
-app.post('/webhook/', function (req, res) {
+
+app.post('/webhook/', function(req, res) {
+	console.log('req is ' + req)
   messaging_events = req.body.entry[0].messaging;
   for (i = 0; i < messaging_events.length; i++) {
     event = req.body.entry[0].messaging[i];

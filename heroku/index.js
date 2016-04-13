@@ -39,7 +39,7 @@ app.listen(app.get('port'));
 app.use(bodyParser.json());
 
 app.get('/', function(req, res) {
-  //console.log(req);
+  console.log('pinged the page');
   res.send('It works!');
 });
 

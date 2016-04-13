@@ -57,8 +57,8 @@ app.post('/instagram', function(req, res) {
 function sendTextMessage(sender, text) {
   messageData = {
     text:text
-  },
-  request({
+  }
+  request = ({
     url: 'https://graph.facebook.com/v2.6/me/messages',
     qs: {access_token:token},
     method: 'POST',

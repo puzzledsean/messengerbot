@@ -4,7 +4,7 @@ var request = require('request');
 var app = express();
 
 //facebook page token goes here
-var token = "CAAOxeW56ROcBAHaBNCdIINKS0uxGJsd3Oh5p3F5ORcbByOg5o3EdDZBwRCshyvdhVy9eBBTXZB4i9Et70mtZAUZALJaFv9QBCdlCEZA72WBO18XUbp1CROvZCGcXXfcgy0IFR3YCYjx9MRibD5jgs2NZCE5wiZBDgVCcl1sPAef0rBbvsWkHNXnI2xRuVUXWuUhDlmbLGHWvEAZDZD";
+var token = "<page token>";
 
 app.set('port', (process.env.PORT || 5000));
 app.listen(app.get('port'));

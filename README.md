@@ -1,6 +1,6 @@
 # MessengerBot
 
-Playing with Facebook's new Messenger API.
+Playing around with Facebook's new Messenger API for experimentation.
 
 Basic starter Bot that echos the user's message. Hoping to incorporate natural langauge processing. 
 

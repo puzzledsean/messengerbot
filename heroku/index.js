@@ -23,7 +23,7 @@ app.get('/', function(req, res) {
   res.send('It works!');
 });
 
-app.get(['/facebook', '/instagram'], function(req, res) {
+app.get('/facebook', function(req, res) {
   if (
     req.param('hub.mode') == 'subscribe' &&
     req.param('hub.verify_token') == 'token'
@@ -45,13 +45,6 @@ app.post('/facebook', function(req, res) {
   console.log('Facebook request body:');
   console.log(req.body);
   // Process the Facebook updates here
-  res.sendStatus(200);
-});
-
-app.post('/instagram', function(req, res) {
-  console.log('Instagram request body:');
-  console.log(req.body);
-  // Process the Instagram updates here
   res.sendStatus(200);
 });
 
@@ -86,7 +79,7 @@ app.post('/webhook/', function (req, res) {
     if (event.message && event.message.text) {
       text = event.message.text;
       console.log('user typed ' + text);
-      sendTextMessage(sender, "Text received, echo: "+ text.substring(0, 200));
+      sendTextMessage(sender, text.substring(0, 200));
     }
   }
   res.sendStatus(200);

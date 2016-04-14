@@ -1,16 +1,9 @@
-/**
- * Copyright 2016-present, Facebook, Inc.
- * All rights reserved.
- *
- * This source code is licensed under the license found in the
- * LICENSE file in the root directory of this source tree.
- */
-
 var bodyParser = require('body-parser');
 var express = require('express');
 var request = require('request');
 var app = express();
 
+//facebook page token goes here
 var token = '<page token>';
 
 app.set('port', (process.env.PORT || 5000));
@@ -34,6 +27,7 @@ app.get('/facebook', function(req, res) {
   }
 });
 
+//set up webhook
 app.get('/webhook/', function (req, res) {
   if (req.query['hub.verify_token'] === 'token') {
     res.send(req.query['hub.challenge']);
@@ -70,8 +64,8 @@ function sendTextMessage(sender, text) {
   });
 }
 
+//listen for post request and send back the users own message
 app.post('/webhook/', function (req, res) {
-	console.log('LISTENED TO POST REQUESTION HELLOOOOOOOOOO')
   messaging_events = req.body.entry[0].messaging;
   for (i = 0; i < messaging_events.length; i++) {
     event = req.body.entry[0].messaging[i];
